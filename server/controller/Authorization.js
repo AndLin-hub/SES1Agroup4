@@ -4,7 +4,6 @@ const jwt = require('jsonwebtoken');
 
 
 const register = (req,res,next) => {
-    //hashes the password for safer storage
     bcrypt.hash(req.body.password,10 , function(err,hashedPass){
         if(err){
             res.json({
@@ -20,7 +19,7 @@ const register = (req,res,next) => {
             password: hashedPass,
             DateOfBirth: req.body.dob
         })
-    
+        //saving data into database
         customer.save()
         .then(user => {
             res.json({
@@ -29,10 +28,13 @@ const register = (req,res,next) => {
         })
         .catch(error => {
             res.json({
-                message: 'An error occured!'
+                message: error
             })
         })
     })
 };
 
-module.exports = {register}
+module.exports =  { 
+    register
+}
+

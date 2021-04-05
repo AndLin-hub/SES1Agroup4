@@ -5,16 +5,18 @@ const app = express();
 const mongoose = require('mongoose');
 const url = process.env.MONGO_URI;
 
-const AuthRoute = require('./routes/auth.js');
-
 
 //connect to database
 mongoose.connect(url,{useNewUrlParser: true, useUnifiedTopology: true});
+
+const AuthRoute = require('./routes/auth.js')
+
 
 
 //set view engine
 app.set('view-engine','html');
 
+//allows for the fields in the html to be grabbed/ body  parser
 app.use(express.urlencoded({extended: false})); 
 
 //css for the register page
@@ -35,11 +37,6 @@ app.get('/register',(req,res)=>{
     res.sendFile(__dirname+'/view/register.html')
 });
 
-app.post('/register',AuthRoute, (req, res)=>{
-    console.log(req.body);
-})
+app.use('/register',AuthRoute);
 
-
-
-app.listen(2001)    
-    
+app.listen(2008)    
