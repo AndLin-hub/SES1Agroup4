@@ -13,4 +13,14 @@ router.get('/register',(req,res)=>{
 //Register Handle
 router.post('/register', require('../controller/User.js').register)
 
+
+//login handle
+router.post('/login',require('../controller/User.js').login)
+
+
+
+
+
+
+
 module.exports = router;
