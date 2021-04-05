@@ -4,29 +4,21 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const url = process.env.MONGO_URI;
-mongoose.connect(url,{useNewUrlParser: true});
 
-//template for customer field for database
-const Schema = mongoose.Schema;
-var customerSchema = new Schema({
-    firstName: {type: String, required: true},
-    lastName:  {type: String, required: true},
-    password:  {type: String, required: true},
-    DateOfBirth: {type: Date},
-    phoneNumber:{type: String},
-    email: {type: String, required: true}
-});
+const AuthRoute = require('./routes/auth.js');
 
-const Customer = mongoose.model("Person",customerSchema);
 
-//create empty array for customer database for schema
-Customer.create([]);
+//connect to database
+mongoose.connect(url,{useNewUrlParser: true, useUnifiedTopology: true});
+
 
 //set view engine
 app.set('view-engine','html');
 
+app.use(express.urlencoded({extended: false})); 
+
 //css for the register page
-app.use("/register",express.static(__dirname + "/css/register.css"));
+app.use("/",express.static(__dirname + "/css"));
 
 //mainpage
 app.get('/',(req,res)=>{
@@ -43,6 +35,11 @@ app.get('/register',(req,res)=>{
     res.sendFile(__dirname+'/view/register.html')
 });
 
+app.post('/register',AuthRoute, (req, res)=>{
+    console.log(req.body);
+})
 
 
-app.listen(3001)    
+
+app.listen(2001)    
+    
