@@ -1,6 +1,5 @@
 const Customer = require('../model/Customer');
 const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
 
 
 const register = (req,res,next) => {
@@ -34,7 +33,23 @@ const register = (req,res,next) => {
     })
 };
 
+
+const login = (req,res,next) => {
+    Customer.findOne({email: req.body.email})
+    .then(user => {
+       if(user.password == req.body.password){
+           res.json({message: "Welcome " + user.firstName})
+       }
+       else{
+           res.json({message: "User not found"})
+       }
+    })
+
+}
+
+
 module.exports =  { 
-    register
+    register,
+    login
 }
 
