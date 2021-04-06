@@ -36,13 +36,18 @@ const register = (req,res,next) => {
 
 const login = (req,res,next) => {
     Customer.findOne({email: req.body.email})
-    .then(user => {
-       if(user.password == req.body.password){
-           res.json({message: "Welcome " + user.firstName})
+    .then(user =>{
+       bcrypt.compare(req.body.password, user.password, (err, result)=>{
+        if(result){
+            res.json({message: "Welcome " + user.firstName})
        }
        else{
-           res.json({message: "User not found"})
-       }
+           res.json({message: "Incorrect Password"})
+        }
+    }
+       )
+
+       
     })
 
 }
