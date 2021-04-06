@@ -9,9 +9,9 @@ const url = process.env.MONGO_URI;
 //connect to database
 mongoose.connect(url,{useNewUrlParser: true, useUnifiedTopology: true});
 
-const AuthRoute = require('./routes/auth.js')
+const AuthRoute = require('./routes/auth')
 
-
+const htmlRoute = require('./routes/index')
 
 //set view engine
 app.set('view-engine','html');
@@ -22,21 +22,24 @@ app.use(express.urlencoded({extended: false}));
 //css for the register page
 app.use("/",express.static(__dirname + "/css"));
 
-//mainpage
 app.get('/',(req,res)=>{
-    res.sendFile(__dirname+'/view/mainpage.html');
+    res.sendFile(__dirname + ('/views/mainpage.html'));
 });
 
 //redirect to login html
-app.get('/login',(req,res)=>{
-    res.sendFile(__dirname+'/view/login.html')
+app.get('/users/login',(req,res)=>{
+    res.sendFile(__dirname +'/views/login.html')
 });
 
 //redirect to register html
-app.get('/register',(req,res)=>{
-    res.sendFile(__dirname+'/view/register.html')
+app.get('/users/register',(req,res)=>{
+    res.sendFile(__dirname +'/views/register.html')
 });
 
-app.use('/register',AuthRoute);
+
+
+//app.use('/',htmlRoute) (doesn't work properly for now)
+app.use('/users',AuthRoute);
+
 
 app.listen(2008)    
