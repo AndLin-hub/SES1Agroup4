@@ -47,6 +47,8 @@ const login = (req,res,next) => {
        
     })
 
+    .catch(err =>res.json({message: "User does not exist"}))
+
 }
 
 
