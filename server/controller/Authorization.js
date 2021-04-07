@@ -35,7 +35,7 @@ const register = (req,res,next) => {
 
 
 const login = (req,res,next) => {
-    Customer.findOne({email: req.body.email})
+     Customer.findOne({email: req.body.email})
     .then(user =>{
        bcrypt.compare(req.body.password, user.password, (err, result)=>{
         if(result){
@@ -49,8 +49,10 @@ const login = (req,res,next) => {
 
        
     })
-
+    .catch( err => res.json({message: "User does not exist"}))
 }
+
+
 
 
 module.exports =  { 
