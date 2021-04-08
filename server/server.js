@@ -20,7 +20,7 @@ app.set('view-engine','html');
 app.use(express.urlencoded({extended: false})); 
 
 //css for the register page
-app.use("/",express.static(__dirname + "/css"));
+app.use("/",express.static(__dirname + "/css/style.css"));
 
 app.get('/',(req,res)=>{
     res.sendFile(__dirname + ('/views/mainpage.html'));
@@ -42,4 +42,4 @@ app.get('/users/register',(req,res)=>{
 app.use('/users',AuthRoute);
 
 
-app.listen(2008)    
+app.listen(2);
