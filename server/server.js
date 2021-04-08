@@ -36,10 +36,17 @@ app.get('/users/register',(req,res)=>{
     res.sendFile(__dirname +'/views/register.html')
 });
 
+app.get('/users/booking',(req,res)=>{
+    res.sendFile(__dirname +'/views/booking.html')
+});
+
+app.get('/users/menu',(req,res)=>{
+    res.sendFile(__dirname +'/views/menu.html')
+});
 
 
 //app.use('/',htmlRoute) (doesn't work properly for now)
 app.use('/users',AuthRoute);
 
 
-app.listen(2);
+app.listen(2); 
