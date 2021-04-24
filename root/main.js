@@ -23,7 +23,7 @@ app.use(express.urlencoded({extended: false}));
 app.use("/",express.static(__dirname + "/css/style.css"));
 
 app.get('/',(req,res)=>{
-    res.sendFile(__dirname + ('/views/mainpage.html'));
+    res.sendFile(__dirname + ('/views/index.html'));
 });
 
 //redirect to login html
