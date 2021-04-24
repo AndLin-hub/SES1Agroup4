@@ -20,7 +20,7 @@ app.set('view-engine','html');
 app.use(express.urlencoded({extended: false})); 
 
 //css for the register page
-app.use("/",express.static(__dirname + "/css/style.css"));
+app.use(express.static(__dirname +'/public'))
 
 app.get('/',(req,res)=>{
     res.sendFile(__dirname + ('/views/mainpage.html'));
