@@ -26,34 +26,33 @@
         </div>
         
         <div class="container-form">
-            <form action="#">
+            <form action="#"  method="POST">
             <h2 class="heading heading-yellow">Reservation Online</h2>
             
             <div class="form-field">
                 <p>Your Name</p>
-                <input type="text" placeholder="Your Name">
+                <input type="text" name="name" placeholder="First Name and Last Name">
             </div>
             <div class="form-field">
                 <p>Your email</p>
-                <input type="email" placeholder="Your email">
+                <input type="text" name="email" placeholder="Your email">
             </div>
             <div class="form-field">
                 <p>Date</p>
-                <input type="date">
+                <input type="date" name="date" placeholder="mm/dd/yyyy">
             </div>
                 <div class="form-field">
                 <p>Time</p>
-                <input type="time">
+                <input type="time" name="time">
             </div>
             <div class="form-field">
                 <p>How many people?</p>
-                <select name="select" id="#">
+                <select name="select" name="capacity">
                 <option value="1">1 person</option>
                 <option value="2">2 persons</option>
                 <option value="3">3 persosn</option>
                 <option value="4">4 persons</option>
                 <option value="5">5 persons</option>
-                <option value="5+">5+ persons</option>
                 </select>
             </div>
             
