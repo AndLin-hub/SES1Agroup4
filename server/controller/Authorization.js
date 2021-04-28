@@ -10,6 +10,11 @@ const register = (req,res,next) => {
             })
         }
         //collecting all the data on new customer
+        Customer.findOne({email: req.body.email}).then(user =>{
+        if(user){
+            req.flash('error_msg', 'User already exists')
+            res.redirect('/users/register')
+        }else{
         let customer = new Customer ({
             firstName: req.body.firstName,
             lastName: req.body.lastName,
@@ -19,16 +24,19 @@ const register = (req,res,next) => {
             DateOfBirth: req.body.dob
         })
         //saving data into database
+        
         customer.save()
         .then(user => {
-            res.json({
-                message: 'User Added Successfully'
-            })
+            req.flash(
+                'success_msg',
+                'You are now registered and can log in'
+            )
+            res.redirect('/users/login')
         })
         .catch(error => {
-            res.json({
-                message: error
-            })
+           res.json(error)          
+        })
+        }
         })
     })
 };
