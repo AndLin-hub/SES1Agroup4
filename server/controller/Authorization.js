@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 
 
 const register = (req,res,next) => {
-    bcrypt.hash(req.body.password,10 , function(err,hashedPass){
+        bcrypt.hash(req.body.password,10 , function(err,hashedPass){
         if(err){
             res.json({
                 error: err
@@ -41,30 +41,26 @@ const register = (req,res,next) => {
     })
 };
 
-
-const login = (req,res,next) => {
-     Customer.findOne({email: req.body.email})
-    .then(user =>{
-       bcrypt.compare(req.body.password, user.password, (err, result)=>{
-        if(result){
-            res.json({message: "Welcome " + user.firstName})
-       }
-       else{
-           res.json({message: "Incorrect Password"})
-        }
-    }
-       )
-
-       
-    })
-    .catch( err => res.json({message: "User does not exist"}))
+const ensureAuthenticated =  (req, res, next) => {
+      if (req.isAuthenticated()) {
+        return next();
+      }
+      req.flash('error_msg', 'Please log in to view that resource');
+      res.redirect('/users/login');
 }
 
+const forwardAuthenticated = (req, res, next) => {
+      if (!req.isAuthenticated()) {
+        return next();
+      }
+      res.redirect('/mainpage');      
+    }
 
 
 
 module.exports =  { 
     register,
-    login
+    ensureAuthenticated,
+    forwardAuthenticated,
 }
 

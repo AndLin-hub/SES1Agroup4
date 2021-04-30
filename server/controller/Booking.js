@@ -23,7 +23,7 @@ Customer.findOne({email: req.body.email})
                 })
             book.save()
                 .then(booking => {
-                    req.flash('success-msg','Booking added successfully')
+                    req.flash('success_msg','Booking added successfully')
                     res.redirect('/')
                 })
                 .catch(error => {

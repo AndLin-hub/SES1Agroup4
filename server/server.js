@@ -7,8 +7,15 @@ const mongoose = require('mongoose');
 const expressSession = require("express-session");
 const cookieParser = require("cookie-parser");
 const flash = require("connect-flash");
+const passport = require('passport');
 const url = process.env.MONGO_URI;
 
+
+
+//Passport MiddleWare
+app.use(passport.initialize());
+app.use(passport.session());
+require('./controller/passport')(passport);
 
 //setting up cookies, session and flash
 
@@ -35,12 +42,14 @@ app.use(expressLayouts)
 app.set('view engine','ejs');
 
 
-app.use(function(req, res, next) {
+//flash messages 
+app.use((req, res, next) =>{
     res.locals.success_msg = req.flash('success_msg');
     res.locals.error_msg = req.flash('error_msg');
     res.locals.error = req.flash('error');
     next();
-  });
+});
+
 
 //allows for the fields in the html to be grabbed/ body  parser
 app.use(express.urlencoded({extended: false})); 
