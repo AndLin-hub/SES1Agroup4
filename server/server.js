@@ -2,9 +2,26 @@ require('dotenv').config();
 const { urlencoded } = require('express');
 const express = require('express');
 const app = express();
+const expressLayouts = require('express-ejs-layouts')
 const mongoose = require('mongoose');
+const expressSession = require("express-session");
+const cookieParser = require("cookie-parser");
+const flash = require("connect-flash");
 const url = process.env.MONGO_URI;
 
+
+//setting up cookies, session and flash
+
+app.use(cookieParser(process.env.secret_code));
+app.use(expressSession({
+    secret: process.env.secret_code,
+    cookie: {
+        maxAge: 4000000
+    },
+    resave: false,
+    saveUninitialized: false
+}))
+app.use(flash());
 
 //connect to database
 mongoose.connect(url,{useNewUrlParser: true, useUnifiedTopology: true});
@@ -14,7 +31,16 @@ const AuthRoute = require('./routes/auth')
 const htmlRoute = require('./routes/index')
 
 //set view engine
-app.set('view-engine','html');
+app.use(expressLayouts)
+app.set('view engine','ejs');
+
+
+app.use(function(req, res, next) {
+    res.locals.success_msg = req.flash('success_msg');
+    res.locals.error_msg = req.flash('error_msg');
+    res.locals.error = req.flash('error');
+    next();
+  });
 
 //allows for the fields in the html to be grabbed/ body  parser
 app.use(express.urlencoded({extended: false})); 
@@ -23,25 +49,25 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.static(__dirname +'/public'))
 
 app.get('/',(req,res)=>{
-    res.sendFile(__dirname + ('/views/mainpage.html'));
+    res.render('mainpage');
 });
 
 //redirect to login html
 app.get('/users/login',(req,res)=>{
-    res.sendFile(__dirname +'/views/login.html')
+    res.render('login')
 });
 
 //redirect to register html
 app.get('/users/register',(req,res)=>{
-    res.sendFile(__dirname +'/views/register.html')
+    res.render('register')
 });
 
 app.get('/users/booking',(req,res)=>{
-    res.sendFile(__dirname +'/views/booking.html')
+    res.render('booking')
 });
 
 app.get('/users/menu',(req,res)=>{
-    res.sendFile(__dirname +'/views/menu.html')
+    res.render('menu')
 });
 
 

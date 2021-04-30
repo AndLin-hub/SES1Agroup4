@@ -7,10 +7,10 @@ body {
 
 .container {
     background-color: #fafafa;
-    margin: 200px;
+    margin: 250px;
     box-shadow: 10px 15px 20px rgba(0, 0, 0, .1);
     display: grid;
-    grid-template-columns: 40% 60%;
+    grid-template-columns: 100% 60%;
 }
 
 .container-time {
