@@ -41,22 +41,21 @@ const register = (req,res,next) => {
     })
 };
 
-const ensureAuthenticated =  (req, res, next) => {
+
+const ensureAuthenticated = (req, res, next) => {
       if (req.isAuthenticated()) {
         return next();
       }
       req.flash('error_msg', 'Please log in to view that resource');
       res.redirect('/users/login');
-}
+    }
 
-const forwardAuthenticated = (req, res, next) => {
+const forwardAuthenticated = (req, res, next) =>{
       if (!req.isAuthenticated()) {
         return next();
       }
-      res.redirect('/mainpage');      
+      res.redirect('/users/dashboard');      
     }
-
-
 
 module.exports =  { 
     register,
