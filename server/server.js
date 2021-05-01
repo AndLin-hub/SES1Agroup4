@@ -11,7 +11,6 @@ const passport = require('passport');
 const url = process.env.MONGO_URI;
 
 
-
 //Passport MiddleWare
 app.use(passport.initialize());
 app.use(passport.session());
@@ -35,7 +34,6 @@ mongoose.connect(url,{useNewUrlParser: true, useUnifiedTopology: true});
 
 const AuthRoute = require('./routes/auth')
 
-const htmlRoute = require('./routes/index')
 
 //set view engine
 app.use(expressLayouts)
@@ -80,8 +78,23 @@ app.get('/users/menu',(req,res)=>{
 });
 
 
-//app.use('/',htmlRoute) (doesn't work properly for now)
 app.use('/users',AuthRoute);
 
+function checkAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+      return next()
+    }
+  
+    res.redirect('/login')
+}
 
+
+
+function checkNotAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+      return res.redirect('/')
+    }
+    next()
+}
+  
 app.listen(2); 
