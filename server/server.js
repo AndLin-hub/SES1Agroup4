@@ -60,6 +60,7 @@ app.use(express.static(__dirname +'/css'))
 app.get('/',(req,res)=>{
     res.render('homepage');
 });
+
 app.use('/users',AuthRoute);
 
   

@@ -53,11 +53,12 @@ router.get('/dashboard', AuthController.ensureAuthenticated, (req, res) =>
     user: req.user
   })
 );
-
+router.get('/changeBooking',BookingController.fetchData,(req,res) => {
+  res.render('changeBooking')
+})
+router.post('/changeBooking',BookingController.fetchData);
 
 router.post('/booking', BookingController.book)
 
-
-
 //export router to other file to use
-module.exports = router;
+module.exports = router;  

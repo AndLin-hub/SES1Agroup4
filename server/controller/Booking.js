@@ -1,6 +1,8 @@
 const Booking = require('../model/Booking');
 const Customer = require('../model/Customer');
-const book  = (req,res,next) => {
+
+
+const book  = async (req,res,next) => {
 
 Customer.findOne({email: req.body.email})
     .then(user => {
@@ -27,13 +29,13 @@ Customer.findOne({email: req.body.email})
                     res.redirect('/')
                 })
                 .catch(error => {
-                    res.json({ message: error})
+                    res.json({ message: "error at save"})
                 })
              }
         
         })
         .catch(error =>{
-            res.json({message: error})
+            res.json({message: "error find"})
         })
         }
         else{
@@ -46,4 +48,9 @@ Customer.findOne({email: req.body.email})
     })
 }
 
-module.exports = {book}
+module.exports = {book,
+    fetchData:function(req, res){
+        Booking.fetchData(function(data){
+            res.render('changeBooking',{userData:data});
+        })
+      }}

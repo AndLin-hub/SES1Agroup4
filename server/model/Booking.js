@@ -11,4 +11,14 @@ var bookingSchema = new Schema({
 
 const Booking = mongoose.model("Booking",bookingSchema);
 
-module.exports = Booking;
+function fetchData(callback){
+        var userData=Booking.find({}).sort({"date":1})
+        userData.exec(function(err,data){
+                if(err) throw err;
+                return callback(data);
+        })
+}
+
+module.exports = {Booking,
+                fetchData
+        }
