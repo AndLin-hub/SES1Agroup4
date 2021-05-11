@@ -6,7 +6,7 @@ const passport = require('passport')
 const BookingController = require('../controller/Booking')
 const AuthController = require('../controller/Authorization')
 const initializePassport = require('../controller/passport')
-
+const Booking = require('../model/Booking')
 
 initializePassport(
     passport,
@@ -34,6 +34,26 @@ router.get('/menu',(req,res)=>{
   res.render('menu')
 });
 
+router.get('/changeBooking',(req,res,next) =>{
+  //Here fetch data using mongoose query like
+  Booking.find({}, function(err, data) {
+  if (err) throw err;
+  // object of all the users
+  res.render('changeBooking',{Booking:data});
+}).sort({"date":1})
+});
+
+router.get('/userBooking', AuthController.ensureAuthenticated, (req,res,next) =>{
+  //Here fetch data using mongoose query like
+  Booking.find({email: req.user.email}, function(err, data) {
+  if (err) throw err;
+  // object of all the users
+  res.render('changeBooking',{Booking:data});
+}).sort({"date":1})
+});
+
+
+
 router.get('/logout', (req, res) => {
   req.logout();
   req.flash('success_msg', 'You are logged out');
@@ -53,12 +73,11 @@ router.get('/dashboard', AuthController.ensureAuthenticated, (req, res) =>
     user: req.user
   })
 );
-router.get('/changeBooking',BookingController.fetchData,(req,res) => {
-  res.render('changeBooking')
-})
-router.post('/changeBooking',BookingController.fetchData);
+
 
 router.post('/booking', BookingController.book)
 
+
+
 //export router to other file to use
-module.exports = router;  
+module.exports = router;

@@ -87,7 +87,7 @@ header {
 		margin: auto;
 	}
 	img {
-		width: windowwidth;
+		width: cover;
 	}
 	.nav-area {
 		float: none;
