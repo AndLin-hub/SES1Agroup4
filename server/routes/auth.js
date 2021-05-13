@@ -64,6 +64,7 @@ router.get('/edit/:id',AuthController.ensureAuthenticated, (req,res) =>{
 )
 
 
+
 router.get('/delete/:id', AuthController.ensureAuthenticated, (req,res,next) => {
   var deleteId = req.params.id
   userData = Booking.findByIdAndDelete(deleteId)
@@ -73,7 +74,7 @@ router.get('/delete/:id', AuthController.ensureAuthenticated, (req,res,next) => 
   next()
 },(req,res)=>{
   req.flash("success_msg", "Booking deleted successfully")
-  res.redirect('/users/userBooking')
+  res.redirect('/users/dashboard')
 }
 )
 
