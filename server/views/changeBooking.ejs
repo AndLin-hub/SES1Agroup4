@@ -26,6 +26,7 @@
  </style>
 </head>
 <body>
+  <%- include("./partials/error"); %>
 <!--====form section start====-->
     <div class="table-data">
     <table border="1" >
@@ -52,8 +53,8 @@
             <td><%=data.lastName %></td>
             <td><%=data.date %></td>
             <td><%=data.time %></td>
-            <td><a href="/edit/<%=data.id%>">Edit</a></td>
-            <td><a href="/delete/<%=data.id%>">Delete</a></td>
+            <td><a href="/users/edit/<%=data.id%>">Edit</a></td>
+            <td><a href="/users/delete/<%=data.id%>">Delete</a></td>
         </tr>
         <%  i++; }) %>
         <% } else{ %>

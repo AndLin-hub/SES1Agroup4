@@ -6,7 +6,8 @@ const passport = require('passport')
 const BookingController = require('../controller/Booking')
 const AuthController = require('../controller/Authorization')
 const initializePassport = require('../controller/passport')
-const Booking = require('../model/Booking')
+const Booking = require('../model/Booking');
+const { ReplSet } = require('mongodb');
 
 initializePassport(
     passport,
@@ -52,7 +53,29 @@ router.get('/userBooking', AuthController.ensureAuthenticated, (req,res,next) =>
 }).sort({"date":1})
 });
 
+router.get('/edit/:id', (req,res) =>{
+  var editId = req.params.id
+  userData = Booking.findById(editId)
+  userData.exec(function(err,data){
+    if(err) throw err
+    res.render('editBooking',{userData:data})
+  })
+}
+)
 
+
+router.get('/delete/:id', (req,res,next) => {
+  var deleteId = req.params.id
+  userData = Booking.findByIdAndDelete(deleteId)
+  userData.exec(function(err,data){
+    if(err) throw err
+  })
+  next()
+},(req,res)=>{
+  req.flash("success_msg", "Booking deleted successfully")
+  res.redirect('/users/userBooking')
+}
+)
 
 router.get('/logout', (req, res) => {
   req.logout();
@@ -60,6 +83,21 @@ router.get('/logout', (req, res) => {
   res.redirect('/users/login');
 });
 //
+
+router.post('/edit/:id',(req,res) => {
+  var inputData = req.body
+  var editId = req.params.id
+  userData = Booking.findByIdAndUpdate(editId, inputData)
+  userData.exec(function(err,data){
+    if(err) throw err;
+    req.flash("success_msg","Booking successfully editted")
+    res.redirect('/users/userBooking')
+  })
+}
+)
+
+
+
 router.post('/login', (req, res, next) => {
     passport.authenticate('local', {
       successRedirect: '/users/dashboard',
@@ -74,9 +112,12 @@ router.get('/dashboard', AuthController.ensureAuthenticated, (req, res) =>
   })
 );
 
+router.get('/adminLogin', (req, res) =>
+  res.render('adminLogin')
+);
+
 
 router.post('/booking', BookingController.book)
-
 
 
 //export router to other file to use

@@ -24,7 +24,7 @@ Customer.findOne({email: req.body.email})
             book.save()
                 .then(booking => {
                     req.flash('success_msg','Booking added successfully')
-                    res.redirect('/')
+                    res.redirect('/users/dashboard')
                 })
                 .catch(error => {
                     res.json({ message: error})
@@ -45,5 +45,6 @@ Customer.findOne({email: req.body.email})
         res.json({message: error})
     })
 }
+
 
 module.exports = {book}
