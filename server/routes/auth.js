@@ -53,7 +53,7 @@ router.get('/userBooking', AuthController.ensureAuthenticated, (req,res,next) =>
 }).sort({"date":1})
 });
 
-router.get('/edit/:id', (req,res) =>{
+router.get('/edit/:id',AuthController.ensureAuthenticated, (req,res) =>{
   var editId = req.params.id
   userData = Booking.findById(editId)
   userData.exec(function(err,data){
@@ -64,7 +64,7 @@ router.get('/edit/:id', (req,res) =>{
 )
 
 
-router.get('/delete/:id', (req,res,next) => {
+router.get('/delete/:id', AuthController.ensureAuthenticated, (req,res,next) => {
   var deleteId = req.params.id
   userData = Booking.findByIdAndDelete(deleteId)
   userData.exec(function(err,data){
@@ -84,7 +84,7 @@ router.get('/logout', (req, res) => {
 });
 //
 
-router.post('/edit/:id',(req,res) => {
+router.post('/edit/:id',AuthController.ensureAuthenticated,(req,res) => {
   var inputData = req.body
   var editId = req.params.id
   userData = Booking.findByIdAndUpdate(editId, inputData)
