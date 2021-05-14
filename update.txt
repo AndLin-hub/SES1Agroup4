@@ -1,4 +1,7 @@
-Team Charter
+Team Charter - User Story map
 Brief
-Report
+Report - Release backlog & iteration 
 Trello & Github
+no
+help
+

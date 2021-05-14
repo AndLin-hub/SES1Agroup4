@@ -3,13 +3,18 @@ const bcrypt = require('bcryptjs');
 
 
 const register = (req,res,next) => {
-    bcrypt.hash(req.body.password,10 , function(err,hashedPass){
+        bcrypt.hash(req.body.password,10 , function(err,hashedPass){
         if(err){
             res.json({
                 error: err
             })
         }
         //collecting all the data on new customer
+        Customer.findOne({email: req.body.email}).then(user =>{
+        if(user){
+            req.flash('error_msg', 'User already exists')
+            res.redirect('/users/register')
+        }else{
         let customer = new Customer ({
             firstName: req.body.firstName,
             lastName: req.body.lastName,
@@ -19,37 +24,42 @@ const register = (req,res,next) => {
             DateOfBirth: req.body.dob
         })
         //saving data into database
+        
         customer.save()
         .then(user => {
-            res.json({
-                message: 'User Added Successfully'
-            })
+            req.flash(
+                'success_msg',
+                'You are now registered and can log in'
+            )
+            res.redirect('/users/login')
         })
         .catch(error => {
-            res.json({
-                message: error
-            })
+           res.json(error)          
+        })
+        }
         })
     })
 };
 
 
-const login = (req,res,next) => {
-    Customer.findOne({email: req.body.email})
-    .then(user => {
-       if(user.password == req.body.password){
-           res.json({message: "Welcome " + user.firstName})
-       }
-       else{
-           res.json({message: "User not found"})
-       }
-    })
+const ensureAuthenticated = (req, res, next) => {
+      if (req.isAuthenticated()) {
+        return next();
+      }
+      req.flash('error_msg', 'Please log in to view that resource');
+      res.redirect('/users/login');
+    }
 
-}
-
+const forwardAuthenticated = (req, res, next) =>{
+      if (!req.isAuthenticated()) {
+        return next();
+      }
+      res.redirect('/users/dashboard');      
+    }
 
 module.exports =  { 
     register,
-    login
+    ensureAuthenticated,
+    forwardAuthenticated,
 }
 
