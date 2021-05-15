@@ -12,7 +12,7 @@ const register = (req,res,next) => {
         //collecting all the data on new customer
         Customer.findOne({email: req.body.email}).then(user =>{
         if(user){
-            req.flash('error_msg', 'User already exists')
+            req.flash('error_msg', 'Email already exists')
             res.redirect('/users/register')
         }else{
         let customer = new Customer ({
@@ -57,9 +57,48 @@ const forwardAuthenticated = (req, res, next) =>{
       res.redirect('/users/dashboard');      
     }
 
+
+
+const isAdmin = (req,res,next) => {
+        Customer.findOne({email: req.body.email})
+        .then(user => {
+            if (!user) {
+                req.flash('error_msg',"Email doesn't exist")
+                res.redirect('/users/adminLogin')
+              }
+            if(user){
+                if(user.admin){
+                    return next()
+                }else{
+                    req.flash('error_msg',"Please log in as admin to view")
+                    res.redirect('/users/adminLogin')
+                }
+            }
+            
+        })
+        .catch(error =>{
+            res.json({message: error})
+        })
+
+    }
+
+    const ensureAdminAuthenticated = (req, res, next) => {
+        if (req.isAuthenticated()) {
+            if(req.user.admin){
+            return next();
+            }
+        }
+        req.flash('error_msg', 'Please log in as Admin to view that resource');
+        res.redirect('/users/adminLogin');
+      }
+  
+
+
 module.exports =  { 
     register,
     ensureAuthenticated,
     forwardAuthenticated,
+    isAdmin,
+    ensureAdminAuthenticated
 }
 

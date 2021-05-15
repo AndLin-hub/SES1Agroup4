@@ -10,6 +10,7 @@
 </head>
 <body>
     <header>
+        <%- include("./partials/error"); %>
         <div class="wrapper">
             <div class="logo">
                 <img src="https://i.postimg.cc/mg4rWBmv/logo.png" alt="">
@@ -17,13 +18,13 @@
             </div>
 
             <ul class="nav-area">
-                <li><a href="#">Home</a></li>
-                <li><a href="/users/menu">Menu</a></li>
+                <li><a href="/users/adminLogin">admin</a></li>
                 <li><a href="/users/login">Login</a></li>
                 <li><a href="/users/register">Register</a></li>
+                <li><a href="/users/dashboard">Dashboard</a></li>    
                 <li><a href="/users/contact">Contact</a></li>
-                <li><a href="/users/booking">Booking</a></li>
-            </ul>
+                <li><a href="/users/menu">Menu</a></li>
+                              </ul>
         </div>
 
         <div class="welcome-text">
