@@ -1,3 +1,4 @@
+const { ReplSet } = require('mongodb');
 const Booking = require('../model/Booking');
 const Customer = require('../model/Customer');
 const book  = (req,res,next) => {

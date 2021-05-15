@@ -7,7 +7,8 @@ var customerSchema = new Schema({
     password:  {type: String, required: true},
     DateOfBirth: {type: Date, required: true},
     phone:{type: String, required: true},
-    email: {type: String, required: true}
+    email: {type: String, required: true},
+    admin: {type: Boolean, default: false}
 });
 
 const Customer = mongoose.model("Customer",customerSchema);
