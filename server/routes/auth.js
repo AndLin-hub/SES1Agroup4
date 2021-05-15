@@ -17,14 +17,41 @@ initializePassport(
 )
 
 //grabbing info from post of register html page to make database
-router.post('/register', AuthController.register)
+router.post('/register', (req,res,next) =>{
+ const { firstName, lastName, email, password, password2 } = req.body;
+let errors = [];
+
+if (!firstName || !lastName || !email || !password || !password2) {
+  errors.push({ msg: 'Please enter all fields' });
+}
+
+if (password != password2) {
+  errors.push({ msg: 'Passwords do not match' });
+}
+
+if (password.length < 8) {
+  errors.push({ msg: 'Password must be at least 6 characters' });
+}
+
+if (errors.length > 0) {
+  res.render('register', {
+    errors,
+    firstName,
+    lastName,
+    email,
+    password,
+    password2
+  });
+}
+next()},AuthController.register)
 
 router.get('/login',(req,res)=>{
   res.render('login')
 });
 
 //redirect to register 
-router.get('/register',(req,res)=>{
+router.get('/register', 
+  (req,res)=>{
   res.render('register')
 });
 
@@ -105,7 +132,7 @@ router.post('/profileEdit/:id',AuthController.ensureAuthenticated,(req,res) => {
 }
 )
 
-router.get('/userEdit/:id',AuthController.ensureAuthenticated, (req,res) =>{
+router.get('/userEdit/:id',AuthController.ensureAdminAuthenticated, (req,res) =>{
   var editId = req.params.id
   userData = Customer.findById(editId)
   userData.exec(function(err,data){
@@ -115,7 +142,7 @@ router.get('/userEdit/:id',AuthController.ensureAuthenticated, (req,res) =>{
 }
 )
 
-router.post('/userEdit/:id',AuthController.ensureAuthenticated,(req,res) => {
+router.post('/userEdit/:id',AuthController.ensureAdminAuthenticated,(req,res) => {
   var inputData = req.body
   var editId = req.params.id
   userData = Customer.findByIdAndUpdate(editId, inputData)
@@ -127,7 +154,7 @@ router.post('/userEdit/:id',AuthController.ensureAuthenticated,(req,res) => {
 }
 )
 
-router.get('/userDelete/:id', AuthController.ensureAuthenticated, (req,res,next) => {
+router.get('/userDelete/:id', AuthController.ensureAdminAuthenticated, (req,res,next) => {
   var deleteId = req.params.id
   userData = Customer.findByIdAndDelete(deleteId)
   userData.exec(function(err,data){
