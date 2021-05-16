@@ -57,8 +57,17 @@
             <td><%=data.lastName %></td>
             <td><%=data.date %></td>
             <td><%=data.time %></td>
+            <% if((new Date() - data.date) > (60 * 60 * 24 * 1000)){
+              %>
             <td><a href="/users/edit/<%=data.id%>">Edit</a></td>
             <td><a href="/users/delete/<%=data.id%>">Delete</a></td>
+             <% }%>
+             <% if((new Date() - data.date) < (60 * 60 * 24 * 1000)){
+              %>
+            <td><a>Can't Edit Booking one day prior</a></td>
+            <td><a>Can't Delete Booking One day prior</a></td>
+             <% }%>
+             
         </tr>
         <%  i++; }) %>
         <% } else{ %>

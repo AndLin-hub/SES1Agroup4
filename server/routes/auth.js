@@ -240,7 +240,6 @@ router.get('/adminDelete/:id', AuthController.ensureAdminAuthenticated, (req,res
 )
 
 
-
 router.post('/login', (req, res, next) => {
     passport.authenticate('local', {
       successRedirect: '/users/dashboard',
