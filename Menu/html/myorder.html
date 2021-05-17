@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>Myorder</title>
+	<link rel="stylesheet" type="text/css" href="../css/style2.css">
+	<style type="text/css">ul{list-style:none} a {text-decoration: none}</style>
+</head>
+<body>
+	<div class="nav_bg">
+    <div class="wrap"> 
+        <ul id="nav" class="nav clearfix">
+            <li class="nLi" style="font-size: 30px;">
+                <h3 class="e"><a  href="#" style="font-size: 23px;">Menu</a></h3>
+            </li>
+            <li class="nLi">
+              <h3 class="d"><a  href="index.html">Menu</a></h3>
+            </li>
+            <li class="nLi">
+              <h3 class="d"><a href="myorder.html">Myorder</a></h3>
+            </li>
+            
+        </ul>
+    </div>
+   </div>
+
+   <div class="myorder">
+     <h1 class="m" style="color: #ff7575">Myorder</h1>
+   </div>
+
+   <div class="order" style="display: none;">
+       <ul >
+           <li id="a" class="orderli">
+               <img src="../images/huiguorou.jpg" width="150" height="110" />
+               <span class="food">a</span>
+               <span class="num">Num: 1</span>
+               <span class="disc">a</span>
+               <span class="price">18</span>
+               <button class="del">Remove</button>
+           </li>
+           <li id="b">
+               <img src="../images/qingjiaoyumi.jpg" width="150" height="110" />
+               <span class="food">b</span>
+               <span class="num">Num: 1</span>
+               <span class="disc">b</span>
+               <span class="price">10</span>
+               <button class="del">Remove</button>
+           </li>
+           <li id="c">
+               <img src="../images/dandanmian.jpg" width="150" height="110" />
+               <span class="food">c</span>
+               <span class="num">Num: 1</span>
+               <span class="disc">c</span>
+               <span class="price">9</span>
+               <button class="del">Remove</button>
+           </li>
+           <li id="d">
+               <img src="../images/jiachang.jpg" width="150" height="110" />
+               <span class="food">d</span>
+               <span class="num">Num: 1</span>
+               <span class="disc">d</span>
+               <span class="price">14</span>
+               <button class="del">Remove</button>
+           </li>
+           <li id="e">
+               <img src="../images/duojiaoyutou.jpg" width="150" height="110" />
+               <span class="food">e</span>
+               <span class="num">Num: 1</span>
+               <span class="disc">e</span>
+               <span class="price">88</span>
+               <button class="del">Remove</button>
+           </li>
+           <li id="h">
+               <img src="../images/hongshaochaocai.jpg" width="150" height="110" />
+               <span class="food">f</span>
+               <span class="num">Num: 1</span>
+               <span class="disc">f</span>
+               <span class="price">15</span>
+               <button class="del">Remove</button>
+           </li>
+           <li id="i">
+               <img src="../images/yuxiangrousi.jpg" width="150" height="110" />
+               <span class="food">g</span>
+               <span class="num">Num: 1</span>
+               <span class="disc">g</span>
+               <span class="price">18</span>
+               <button class="del">Remove</button>
+           </li>
+           <li id="j">
+               <img src="../images/shuijiao.jpg" width="150" height="110" />
+               <span class="food">h</span>
+               <span class="num">Num: 1</span>
+               <span class="disc">h</span>
+               <span class="price">11</span>
+               <button class="del">Remove</button>
+           </li>
+           <li id="k">
+               <img src="../images/huiguochaocai.jpg" width="150" height="110" />
+               <span class="food">i</span>
+               <span class="num">Num: 1</span>
+               <span class="disc">i</span>
+               <span class="price">13</span>
+               <button class="del">Remove</button>
+           </li>
+       </ul>
+   </div>
+
+  <div class="order_content" id="first">
+
+   </div>
+   <div class="b_add">
+       <a href="index.html"><button class="add">Add</button></a>
+   </div>
+   <section class="my_model">
+    <p class="title">Remove<span class="closeModel">X</span></p>
+    <p>Remove?</p>
+    <div class="opBtn">
+        <a href="javascript:;" class="dialog-sure">Confirm</a>
+        <a href="javascript:;" class="dialog-close">Close</a>
+    </div>
+   </section>  
+
+   <script type="text/javascript" src="../js/jQuery.js"></script>
+   <script type="text/javascript" src="../js/jquery.dialog.js"></script>
+   
+   <script type="text/javascript">
+     var db = openDatabase('dishes', '1.0', 'Database', 30*1024*1024);
+     var datatable = document.getElementById("first");
+     var dishnames=new Array();
+
+     showAllData(datatable);
+     function showData(row,datatable,i) {
+        console.log(dishnames.indexOf(row.dishname));
+    if(dishnames.indexOf(row.dishname)!=-1)
+   {
+
+       console.log("repeated");
+   }
+    else{ dishnames.push(row.dishname)
+   
+    var ul=document.createElement("ul");
+    ul.className="order_lists";
+    var li1 = document.getElementById(row.dishname.replace(/(^\s+)|(\s+$)/g,""));
+    ul.appendChild(li1);
+    datatable.appendChild(ul);
+    console.log(datatable)
+    }
+    }
+    function showAllData(datatable) {
+    db.transaction(function(tx) {
+        tx.executeSql("CREATE TABLE IF NOT EXISTS Dingdan(picname TEXT,dishname TEXT,dishdisc TEXT,disprice TEXT,dishnum TEXT)", []);
+        tx.executeSql("SELECT * FROM Dingdan  ", [], function(tx, rs) {
+            
+            for(var i = 0; i < rs.rows.length; i++) {
+                showData(rs.rows.item(i),datatable,i)
+            }
+        })
+    })
+    }
+
+    var $order_lists = null;
+    var $order_content = '';
+    var namer;
+    
+    $('.del').click(function () {
+        $order_lists = $(this).parents('.order_lists');
+        $order_content = $order_lists.parents('.order_content');
+        namer= $(this).parents('.order_lists').find('.food').html();
+       // name=namer.split(">")[1].split("<")[0]
+        console.log(name.length)
+        
+        $('.model_bg').fadeIn(300);
+        $('.my_model').fadeIn(300);
+    });
+   
+
+    //
+    $('.closeModel').click(function () {
+        closeM();
+    });
+    $('.dialog-close').click(function () {
+        closeM();
+    });
+    function closeM() {
+        $('.model_bg').fadeOut(300);
+        $('.my_model').fadeOut(300);
+    }
+    //
+    $('.dialog-sure').click(function () {
+        $order_lists.remove();
+        if($order_content.html().trim() == null || $order_content.html().trim().length == 0){
+            //$.order_content.parents('.cartBox').remove();
+            $.sendMsg('Empty', 1000, function() {
+                console.log('sendMsg closed');
+            });
+        }
+        closeM();
+        //$sonCheckBox = $('.son_check');
+        //totalMoney();
+        var db = openDatabase('dishes', '1.0', 'Database', 30*1024*1024);
+        Deletedish();
+        
+        function Deletedish(datatable) {
+            db.transaction(function(tx) {
+                tx.executeSql("CREATE TABLE IF NOT EXISTS Dingdan(picname TEXT,dishname TEXT,dishdisc TEXT,disprice TEXT,dishnum TEXT)", []);
+                tx.executeSql("DELETE FROM Dingdan WHERE dishname=(?)", [namer], function(tx, rs) {
+                    
+                   console.log("delete success!")
+                })
+            })
+        }
+    })
+   </script>
+</body>
+</html>
