@@ -1,12 +1,24 @@
 <html>
     <%- include("./partials/error"); %>
-    <heading>
+    <h1>
        Admin login
-    </heading>
-    <form class="login-form" action="/users/adminLogin" method="POST">
+    </h1>
+    <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Login</title>
+      <link rel="stylesheet" href="/css/loginandregister.css">
+  </head>
+
+    <div class ="login-page">
+      <div class = "form">
+        <form class="login-form" action="/users/adminLogin" method="POST">
         <input type="email" placeholder="Email id" name='email' id='email' required/>
         <input type="password" placeholder="Password"  name='password' id='password' required/>
         <button>Login</button>
         <p class="message"><a href="/">Return to Home</a></p>
-      </form>
+        </form>
+      </div>
+    </div>
 </html>

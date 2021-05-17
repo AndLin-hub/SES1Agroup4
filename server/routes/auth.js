@@ -30,7 +30,7 @@ if (password != password2) {
 }
 
 if (password.length < 8) {
-  errors.push({ msg: 'Password must be at least 6 characters' });
+  errors.push({ msg: 'Password must be at least 8 characters' });
 }
 
 if (errors.length > 0) {
