@@ -54,7 +54,7 @@ app.use((req, res, next) =>{
 app.use(express.urlencoded({extended: false})); 
 
 //css for the register page
-app.use(express.static(__dirname +'/css'))
+app.use(express.static(__dirname +'/public'))
 
 
 app.get('/',(req,res)=>{
