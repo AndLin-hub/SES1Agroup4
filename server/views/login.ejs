@@ -6,19 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="/css/loginandregister.css">
-</head>>
+</head>
 
 <body>
     <%- include("./partials/error"); %>
     <h1>
     Login
     </h1>
+    <div class="login-page">
+        <div class="form">
     <form class="login-form" action="/users/login" method="POST">
     <input type="email" placeholder="Email id" name='email' id='email' required/>
     <input type="password" placeholder="Password"  name='password' id='password' required/>
-    <button>Login</button>
+    <button id='btn'>Login</button>
     <p class="message">Not a Registered? <a href="/users/register">Register</a></p>
     <p class="message"><a href="/">Return to Home</a></p>
     </form>
-</body>>
+        </div>
+    </div>
+</body>
 </html>

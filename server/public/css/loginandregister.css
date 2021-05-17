@@ -12,7 +12,7 @@ body{
   .form{
     position: relative;
     z-index: 1;
-    background: rgba(16, 47, 184, 0.8);
+    background: rgba(69, 70, 77, 0.8);
     max-width: 360px;
     margin: 0 auto 100px;
     padding: 45px;
@@ -51,4 +51,39 @@ body{
     text-decoration: none;
     color: #4caf50;
   }
+  
+h1{
+  color: #f2f2f2;
+}
+
+
+  body {
+    width: 100%;
+    align-items : center;
+    height: 100%;
+     
+    font-family: 'Poppins', sans-serif;
+    /* Background image is centered vertically and horizontally at all times */
+    background-position: center center;
+  
+    /* Background image doesn't tile */
+    background-repeat: no-repeat;
+  
+    /* Background image is fixed in the viewport so that it doesn't move when 
+    the content's height is greater than the image's height */
+    background-attachment: fixed;
+  
+    /* This is what makes the background image rescale based
+    on the container's size */
+    background-size: cover;
+  
+    /* Set a background color that will be displayed
+    while the background image is loading */
+    background-color: green;
+    overflow: hidden;
+  
+    /* Location of the image */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(https://i.postimg.cc/YjcJg24M/aa.jpg);
+  }  
+  
   
