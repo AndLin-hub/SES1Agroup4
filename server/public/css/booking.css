@@ -7,7 +7,7 @@ body {
 
 .container {
     background-color: #fafafa;
-    margin: 250px;
+    margin: 10px;
     box-shadow: 10px 15px 20px rgba(0, 0, 0, .1);
     display: grid;
     grid-template-columns: 100% 60%;

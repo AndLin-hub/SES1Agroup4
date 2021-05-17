@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;}
+.user-detail {
+    height: 100vh;
+    border: 2px solid #f1f1f1;
+    padding: 16px;
+    background-color: white;
+    width: 30%;}
+input{
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;}
+input[type=text]:focus, input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;}
+button[type=submit] {
+    background-color: #434140;
+    color: #ffffff;
+    padding: 10px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+    font-size: 20px;}
+label{
+  font-size: 18px;;}
+button[type=submit]:hover {
+  background-color:#3d3c3c;}
+  .form-title a, .form-title h2{
+   display: inline-block;
+   
+  }
+  .form-title a{
+      text-decoration: none;
+      font-size: 20px;
+      background-color: green;
+      color: honeydew;
+      padding: 2px 10px;
+  }
+ 
+</style>
+</head>
+<body>
+<!--====form section start====-->
+
+<%- include("./partials/error"); %>
+
+<div class="user-detail">
+    <div class="form-title">
+    <h2>Edit Profile Form</h2>
+    
+    </div>
+    <hr>
+    <form action="<%'/users/profileEdit/'+userData.id%>" method="POST">
+          <label>First Name</label>
+          <input type="text" placeholder="Enter First Name" name="firstName" required value="<%=(typeof userData!='undefined')? userData.firstName:''%>">
+          <label>Last Name</label>
+          <input type="text" placeholder="Enter Last Address" name="lastName" required value="<%=(typeof userData!='undefined')? userData.lastName:''%>">
+          <label>Phone</label>
+          <input type="Phone Number" placeholder="Phone Number" name="phone" required value="<%=(typeof userData!='undefined')? userData.phone:''%>">
+          <label>Email</label>
+          <input type="Email" placeholder="email" name="email" required value="<%=(typeof userData!='undefined')? userData.email:''%>">
+          <button type="submit">Submit</button>
+    </form>
+        </div>
+</div>
+<!--====form section start====-->
+</body>
+</html>

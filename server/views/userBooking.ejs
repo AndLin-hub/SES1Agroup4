@@ -5,6 +5,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
  <style type="text/css">
+    tr{
+        padding: 20px 20px; 
+    }
+
      table, td, th {  
      border: 1px solid #ddd;
      text-align: left;
@@ -53,9 +57,17 @@
             <td><%=data.lastName %></td>
             <td><%=data.date %></td>
             <td><%=data.time %></td>
-            
-            <td><a href="/users/adminEdit/<%=data.id%>">Edit</a></td>
-            <td><a href="/users/adminDelete/<%=data.id%>">Delete</a></td>
+            <% if((new Date() - data.date) > (60 * 60 * 24 * 1000)){
+              %>
+            <td><a href="/users/edit/<%=data.id%>">Edit</a></td>
+            <td><a href="/users/delete/<%=data.id%>">Delete</a></td>
+             <% }%>
+             <% if((new Date() - data.date) < (60 * 60 * 24 * 1000)){
+              %>
+            <td><a>Can't Edit Booking one day prior</a></td>
+            <td><a>Can't Delete Booking One day prior</a></td>
+             <% }%>
+             
         </tr>
         <%  i++; }) %>
         <% } else{ %>
@@ -65,9 +77,9 @@
         <% } %>
     </table>
     </div>
-    
+  
 </body>
 
-<a href="/users/adminDashboard" class="btn btn-secondary">Return to Dashboard</a>
+<a href="/users/dashboard" class="btn btn-secondary">Return to Dashboard</a>
 
 </html>
