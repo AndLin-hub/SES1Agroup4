@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/css/editingPage.css">
+
+</head>
+<body>
+<!--====form section start====-->
+
+<%- include("./partials/error"); %>
+
+<div class="user-detail">
+    <div class="form-title">
+    <h2>Edit Profile Form</h2>
+    
+    </div>
+    <hr>
+    <form  method="POST">
+          <label>First Name</label>
+          <input type="text" placeholder="Enter First Name" name="firstName" required value="<%=(typeof userData!='undefined')? userData.firstName:''%>">
+          <label>Last Name</label>
+          <input type="text" placeholder="Enter Last Address" name="lastName" required value="<%=(typeof userData!='undefined')? userData.lastName:''%>">
+          <label>Phone</label>
+          <input type="Phone Number" placeholder="Phone Number" name="phone" required value="<%=(typeof userData!='undefined')? userData.phone:''%>">
+          <label>Email</label>
+          <input type="Email" placeholder="email" name="email" required value="<%=(typeof userData!='undefined')? userData.email:''%>">
+          <button type="submit">Submit</button>
+          <a href="/users/adminDashboard" class="btn btn-secondary">Return to Dashboard</a>
+    </form>
+        </div>
+</div>
+<!--====form section start====-->
+</body>
+</html>

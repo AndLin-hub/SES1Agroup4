@@ -34,6 +34,7 @@ tr{
 }
 
  table, td, th {  
+border-radius: 25px;
  border: 1px solid #ddd;
  text-align: left;
 }
@@ -41,9 +42,10 @@ tr{
 table {
  border-collapse: collapse;
  width: 100%;
-
+ 
 }
 .table-data{
+
    position: relative;
    font-weight: 400;
    font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;

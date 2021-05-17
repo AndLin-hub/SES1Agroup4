@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/css/editingPage.css">
+</head>
+<body>
+<!--====form section start====-->
+
+<%- include("./partials/error"); %>
+
+<div class="user-detail">
+    <div class="form-title">
+    <h2>Edit Booking Form</h2>
+    <a href="/users/userBooking">Booking List</a>
+    
+    </div>
+    <hr>
+    <form action="<%'/users/edit/'+userData.id%>" method="POST">
+          <label>First Name</label>
+          <input type="text" placeholder="Enter First Name" name="firstName" required value="<%=(typeof userData!='undefined')? userData.firstName:''%>">
+          <label>Last Name</label>
+          <input type="text" placeholder="Enter Last Address" name="lastName" required value="<%=(typeof userData!='undefined')? userData.lastName:''%>">
+          <label>Date</label>
+          <input type="date" placeholder="dd/mm/yy" name="date" required value="<%=(typeof userData!='undefined')? userData.date:''%>">
+          <label>Time</label>
+          <input type="time" placeholder="Time" name="time" required value="<%=(typeof userData!='undefined')? userData.time:''%>">
+          <button type="submit">Submit</button>
+          <button href="/users/adminDashboard" class="btn btn-secondary">Return to Dashboard</button>
+    </form>
+        </div>
+</div>
+
+<!--====form section start====-->
+</body>
+</html>

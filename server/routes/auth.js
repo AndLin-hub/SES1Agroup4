@@ -137,7 +137,7 @@ router.get('/userEdit/:id',AuthController.ensureAdminAuthenticated, (req,res) =>
   userData = Customer.findById(editId)
   userData.exec(function(err,data){
     if(err) throw err
-    res.render('editUserInfo',{userData:data})
+    res.render('editAdminUserInfo',{userData:data})
   })
 }
 )
@@ -173,7 +173,7 @@ router.get('/adminEdit/:id',AuthController.ensureAdminAuthenticated, (req,res) =
   userData = Booking.findById(editId)
   userData.exec(function(err,data){
     if(err) throw err
-    res.render('editBooking',{userData:data})
+    res.render('editAdminBooking',{userData:data})
   })
 }
 )
