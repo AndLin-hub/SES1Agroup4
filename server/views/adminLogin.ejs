@@ -1,8 +1,6 @@
 <html>
-    <%- include("./partials/error"); %>
-    <h1>
-       Admin login
-    </h1>
+   
+ 
     <head>
       <meta charset="UTF-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,8 +8,12 @@
       <title>Login</title>
       <link rel="stylesheet" href="/css/loginandregister.css">
   </head>
-
+  <%- include("./partials/error"); %>
     <div class ="login-page">
+     
+      <h1>
+        Admin login
+     </h1>
       <div class = "form">
         <form class="login-form" action="/users/adminLogin" method="POST">
         <input type="email" placeholder="Email id" name='email' id='email' required/>

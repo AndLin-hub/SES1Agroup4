@@ -3,15 +3,39 @@ body {
     font-weight: 400;
     color: #fff;
     letter-spacing: 1px;
+  
+    width: 100%;
+    align-items : center;
+    height: 100%;
+         
+    /* Background image is centered vertically and horizontally at all times */
+    background-position: center center;
+    
+    /* Background image doesn't tile */
+    background-repeat: no-repeat;
+    
+    /* Background image is fixed in the viewport so that it doesn't move when 
+    the content's height is greater than the image's height */
+    background-attachment: fixed;
+    
+    /* This is what makes the background image rescale based
+    on the container's size */
+    background-size: cover;
+    
+    /* Set a background color that will be displayed
+    while the background image is loading */
+    background-color: green;
+    overflow: hidden;
+    
+    /* Location of the image */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(https://i.postimg.cc/YjcJg24M/aa.jpg);
+    
+     
+     
+    
 }
 
-.container {
-    background-color: #fafafa;
-    margin: 10px;
-    box-shadow: 10px 15px 20px rgba(0, 0, 0, .1);
-    display: grid;
-    grid-template-columns: 100% 60%;
-}
+
 
 .container-time {
     background-color: rgba(0, 0, 0, .95);
@@ -39,7 +63,7 @@ body {
 .container-form {
     padding: 20px 0;
     margin: 0 auto;
-    color: #000;
+    color: #f2f2f2;
 }
 
 form {

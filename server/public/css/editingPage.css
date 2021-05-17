@@ -1,11 +1,41 @@
-* {
-    box-sizing: border-box;}
+
+body {
+	width: 100%;
+	align-items : center;
+	height: 100%;
+	color: #ffffff;
+	font-family: 'Poppins', sans-serif;
+	/* Background image is centered vertically and horizontally at all times */
+	background-position: center center;
+
+	/* Background image doesn't tile */
+	background-repeat: no-repeat;
+
+	/* Background image is fixed in the viewport so that it doesn't move when 
+	the content's height is greater than the image's height */
+	background-attachment: fixed;
+
+	/* This is what makes the background image rescale based
+	on the container's size */
+	background-size: cover;
+
+	/* Set a background color that will be displayed
+	while the background image is loading */
+	background-color: green;
+	overflow: hidden;
+
+	/* Location of the image */
+	background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(https://i.postimg.cc/YjcJg24M/aa.jpg);
+
+ 
+}  
+
   .user-detail {
-      height: 100vh;
+      height: 50vh;
       border: 2px solid #f1f1f1;
       padding: 16px;
-      background-color: white;
-      width: 30%;}
+      background-color: transparent;
+      width: 100%;}
   input{
     width: 100%;
     padding: 15px;
@@ -17,7 +47,7 @@
       background-color: #ddd;
       outline: none;}
   button[type=submit] {
-      background-color: #434140;
+      background-color: #8f8783;
       color: #ffffff;
       padding: 10px 20px;
       margin: 8px 0;

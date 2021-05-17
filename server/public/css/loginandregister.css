@@ -1,15 +1,16 @@
 body{
-    
     height: 100vh;
     background-size: cover;
     background-position: center;
   }
   .login-page{
+
     width: 360px;
     padding: 10% 0 0;
     margin: auto;
   }
   .form{
+    border-radius: 25px;
     position: relative;
     z-index: 1;
     background: rgba(69, 70, 77, 0.8);

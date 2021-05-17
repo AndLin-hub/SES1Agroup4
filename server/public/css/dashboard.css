@@ -29,39 +29,15 @@ body {
  
 }  
 
-tr{
-    padding: 20px 20px; 
+.welcomeText{
+    color: #f2f2f2;
+    font-weight: 800;
+    font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
 }
 
- table, td, th {  
- border: 1px solid #ddd;
- text-align: left;
-}
-
-table {
- border-collapse: collapse;
- width: 100%;
-
-}
-.table-data{
-   position: relative;
-   font-weight: 400;
-   font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
-   color: #f2f2f2;
- left:50px;
- top:50px;
-}
-th, td {
- padding: 15px;
-}
-btn{
-    text-transform: uppercase;
-    outline: 0;
-    background: #4caf50;
-    width: 100%;
-    border: 0;
-    padding: 15px;
-    color: #fff;
-    font-size: 14px;
-    cursor: pointer;
+h1{
+    color: #f2f2f2;
+    text-align: center;
+    font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
   }
+  
