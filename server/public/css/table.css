@@ -1,0 +1,33 @@
+tr{
+    padding: 20px 20px; 
+}
+
+ table, td, th {  
+ border: 1px solid #ddd;
+ text-align: left;
+}
+
+table {
+ border-collapse: collapse;
+ width: 100%;
+
+}
+.table-data{
+   position: relative;
+ left:50px;
+ top:50px;
+}
+th, td {
+ padding: 15px;
+}
+btn{
+    text-transform: uppercase;
+    outline: 0;
+    background: #4caf50;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+  }

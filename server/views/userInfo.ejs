@@ -4,30 +4,7 @@
   <title></title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
- <style type="text/css">
-    tr{
-        padding: 20px 20px; 
-    }
-
-     table, td, th {  
-     border: 1px solid #ddd;
-     text-align: left;
-   }
-   
-   table {
-     border-collapse: collapse;
-     width: 100%;
-    
-   }
-   .table-data{
-       position: relative;
-     left:50px;
-     top:50px;
-   }
-   th, td {
-     padding: 15px;
-   }
- </style>
+  <link rel="stylesheet" href="/css/table.css">
 </head>
 <body>
   <%- include("./partials/error"); %>
@@ -63,9 +40,11 @@
         <% } %>
     </table>
     </div>
-  
+    <div class="btn">
+      <a href="/users/dashboard" class="btn">Return to Dashboard</a>
+    </div>
 </body>
 
-<a href="/users/dashboard" class="btn btn-secondary">Return to Dashboard</a>
+
 
 </html>
