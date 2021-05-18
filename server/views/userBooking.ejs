@@ -32,7 +32,7 @@
             <td><%=data.email %></td>
             <td><%=data.firstName %></td>
             <td><%=data.lastName %></td>
-            <td><%=data.date %></td>
+            <td><%=data.date.toDateString() %></td>
             <td><%=data.time %></td>
             <% if((data.date - new Date()) > (60 * 60 * 24 * 1000)){
               %>

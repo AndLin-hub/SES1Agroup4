@@ -33,7 +33,7 @@
             <td><%=data.firstName %></td>
             <td><%=data.lastName %></td>
             <td><%=data.phone %></td>
-            <td><%=data.DateOfBirth %></td>
+            <td><%=data.DateOfBirth.toDateString() %></td>
             <td><a href="/users/userEdit/<%=data.id%>">Edit</a></td>
             <td><a href="/users/userDelete/<%=data.id%>">Delete</a></td>
         </tr>
