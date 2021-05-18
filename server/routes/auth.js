@@ -55,9 +55,17 @@ router.get('/register',
   res.render('register')
 });
 
-router.get('/booking',AuthController.ensureAuthenticated,(req,res)=>{
+router.get('/adminBooking',AuthController.ensureAdminAuthenticated,(req,res)=>{
   res.render('booking')
 });
+
+router.get('/booking',AuthController.ensureAuthenticated,(req,res)=>{
+  Customer.find({email: req.user.email}, function(err, data) {
+    if (err) throw err;
+    // object of all the users
+    res.render('customerBooking',{Customer:data});
+});
+})
 
 router.get('/menu',(req,res)=>{
   res.render('menu')
@@ -272,6 +280,6 @@ router.get('/adminDashboard', AuthController.ensureAdminAuthenticated, (req,res)
 
 router.post('/booking', BookingController.book)
 
-
+router.post('/adminBooking', BookingController.book)
 //export router to other file to use
 module.exports = router;

@@ -8,9 +8,12 @@
 </head>
 <body>
     <%- include("./partials/error"); %>
-<h1 class="mt-4">Dashboard</h1>
+<h1 class="mt-4">Admin Dashboard</h1>
 
 <p class="welcomeText">Welcome <%= user.firstName %></p>
+<a href="/" class="btn btn-secondary">Home</a>
 <a href="/users/changeBooking" class="btn btn-secondary">Change Booking</a>
 <a href="/users/changeUser" class="btn btn-secondary">Change User</a>
+<a href="/users/adminBooking" class="btn btn-secondary">Booking</a>
 <a href="/users/logout" class="btn btn-secondary">Logout</a>
+

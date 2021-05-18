@@ -22,11 +22,26 @@
           <label>Last Name</label>
           <input type="text" placeholder="Enter Last Address" name="lastName" required value="<%=(typeof userData!='undefined')? userData.lastName:''%>">
           <label>Date</label>
-          <input type="date" placeholder="dd/mm/yy" name="date" required value="<%=(typeof userData!='undefined')? userData.date:''%>">
+          <input type="date" placeholder="dd/mm/yy" name="date" required value="<%=(typeof userData!='undefined')? userData.date:''%>">              
+          <script>
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth()+1; //January is 0!
+            var yyyy = today.getFullYear();
+                if(dd<10){
+                     dd='0'+dd
+                } 
+                if(mm<10){
+                     mm='0'+mm
+                } 
+
+            today = yyyy+'-'+mm+'-'+dd;
+            document.getElementById("date").setAttribute("min", today);
+        </script>
           <label>Time</label>
           <input type="time" placeholder="Time" name="time" required value="<%=(typeof userData!='undefined')? userData.time:''%>">
           <button type="submit">Submit</button>
-          <button href="/users/dashboard" class="btn btn-secondary">Return to Dashboard</button>
+          <a href="/users/dashboard" class="btn btn-secondary">Return to Dashboard</a>
     </form>
         </div>
 </div>

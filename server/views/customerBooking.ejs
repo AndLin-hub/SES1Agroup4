@@ -27,19 +27,28 @@
             
             <h4 class="heading-phone">Call Us: (123) 45-45-456</h4>
         </div>
-        
+        <%
+        if(Customer.length!=0){
+        Customer.forEach(function(data){
+        %>
         <div class="container-form">
             <form action="#"  method="POST">
             <h2 class="heading heading-yellow">Reservation Online</h2>
             
             <div class="form-field">
                 <p>Your Name</p>
-                <input type="text" name="name" placeholder="First Name and Last Name">
+                <input type="text" name="name" placeholder="First Name and Last Name" value="<%=data.firstName%> <%=data.lastName%>"" readonly>
             </div>
             <div class="form-field">
                 <p>Your email</p>
-                <input type="email" name="email" placeholder="Your email">
+                <input type="email" name="email" placeholder="Your email" value="<%=data.email%>" readonly>
             </div>
+            <%   }) %>
+            <% } else{ %>
+                <tr>
+                    <td colspan="7">No Data Found</td>
+                </tr>
+            <% } %>
             <div class="form-field">
                 <p>Date</p>
                 <input type="date" name="date"id="date" placeholder="date"/>              
@@ -75,7 +84,7 @@
             </div>
             
             <button class="btn">Submit</button>
-            <a class ="btn" href="/users/adminDashboard"> Return to  Dashboard </a>
+            <a class ="btn" href="/users/dashboard"> Return to  Dashboard </a>
             </form>
         </div>
     </div>  
