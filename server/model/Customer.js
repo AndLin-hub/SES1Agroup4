@@ -8,7 +8,8 @@ var customerSchema = new Schema({
     DateOfBirth: {type: Date, required: true},
     phone:{type: String, required: true},
     email: {type: String, required: true},
-    admin: {type: Boolean, default: false}
+    admin: {type: Boolean, default: false},
+    rewards: {type: Number, dafault: 0}
 });
 
 const Customer = mongoose.model("Customer",customerSchema);
