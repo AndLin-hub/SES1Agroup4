@@ -17,33 +17,7 @@ initializePassport(
 )
 
 //grabbing info from post of register html page to make database
-router.post('/register', (req,res,next) =>{
- const { firstName, lastName, email, password, password2 } = req.body;
-let errors = [];
-
-if (!firstName || !lastName || !email || !password || !password2) {
-  errors.push({ msg: 'Please enter all fields' });
-}
-
-if (password != password2) {
-  errors.push({ msg: 'Passwords do not match' });
-}
-
-if (password.length < 8) {
-  errors.push({ msg: 'Password must be at least 8 characters' });
-}
-
-if (errors.length > 0) {
-  res.render('register', {
-    errors,
-    firstName,
-    lastName,
-    email,
-    password,
-    password2
-  });
-}
-next()},AuthController.register)
+router.post('/register',AuthController.register)
 
 router.get('/login',(req,res)=>{
   res.render('login')
@@ -165,9 +139,18 @@ router.post('/userEdit/:id',AuthController.ensureAdminAuthenticated,(req,res) =>
 router.get('/userDelete/:id', AuthController.ensureAdminAuthenticated, (req,res,next) => {
   var deleteId = req.params.id
   userData = Customer.findByIdAndDelete(deleteId)
+  Customer.findByIdAndDelete(deleteId)
+  .then(user =>{
+    customerBooking = Booking.deleteMany({email: user.email})
+    customerBooking.exec(function(err,data){
+      if(err) throw err
+    })
+  
+  })
   userData.exec(function(err,data){
     if(err) throw err
   })
+ 
   next()
 },(req,res)=>{
   req.flash("success_msg", "User deleted successfully")
@@ -278,8 +261,8 @@ router.get('/adminDashboard', AuthController.ensureAdminAuthenticated, (req,res)
   res.render('adminDashboard',{user:req.user})
 })
 
-router.post('/booking', BookingController.book)
+router.post('/booking', AuthController.ensureAuthenticated,BookingController.book)
 
-router.post('/adminBooking', BookingController.book)
+router.post('/adminBooking',AuthController.ensureAdminAuthenticated, BookingController.adminBook)
 //export router to other file to use
 module.exports = router;

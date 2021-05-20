@@ -14,7 +14,35 @@ const register = (req,res,next) => {
         if(user){
             req.flash('error_msg', 'Email already exists')
             res.redirect('/users/register')
-        }else{
+        }
+        
+
+        const { firstName, lastName, email, password, password2 } = req.body;
+        let errors = [];
+        
+        if (!firstName || !lastName || !email || !password || !password2) {
+          errors.push({ msg: 'Please enter all fields' });
+        }
+        
+        if (password != password2) {
+          errors.push({ msg: 'Passwords do not match' });
+        }
+        
+        if (password.length < 8) {
+          errors.push({ msg: 'Password must be at least 8 characters' });
+        }
+        
+        if (errors.length > 0) {
+          res.render('register', {
+            errors,
+            firstName,
+            lastName,
+            email,
+            password,
+            password2
+          });
+        }
+        else{
         let customer = new Customer ({
             firstName: req.body.firstName,
             lastName: req.body.lastName,

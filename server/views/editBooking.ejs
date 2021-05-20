@@ -12,17 +12,16 @@
 <div class="user-detail">
     <div class="form-title">
     <h2>Edit Booking Form</h2>
-    <a href="/users/userBooking">Booking List</a>
     
     </div>
     <hr>
     <form action="<%'/users/edit/'+userData.id%>" method="POST">
           <label>First Name</label>
-          <input type="text" placeholder="Enter First Name" name="firstName" required value="<%=(typeof userData!='undefined')? userData.firstName:''%>">
+          <input type="text" placeholder="Enter First Name" name="firstName" required value="<%=(typeof userData!='undefined')? userData.firstName:''%>" readonly>
           <label>Last Name</label>
-          <input type="text" placeholder="Enter Last Address" name="lastName" required value="<%=(typeof userData!='undefined')? userData.lastName:''%>">
+          <input type="text" placeholder="Enter Last Address" name="lastName" required value="<%=(typeof userData!='undefined')? userData.lastName:''%>" readonly>
           <label>Date</label>
-          <input type="date" placeholder="dd/mm/yy" name="date" required value="<%=(typeof userData!='undefined')? userData.date:''%>">              
+          <input type="date" placeholder="dd/mm/yy" name="date" id="date" required value="<%=(typeof userData!='undefined')? userData.date:''%>">              
           <script>
             var today = new Date();
             var dd = today.getDate();

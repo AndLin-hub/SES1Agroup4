@@ -18,7 +18,7 @@
     <hr>
     <form action="<%'/users/profileEdit/'+userData.id%>" method="POST">
           <label>First Name</label>
-          <input type="text" placeholder="Enter First Name" name="firstName" required value="<%=(typeof userData!='undefined')? userData.firstName:''%>">
+          <input type="text" placeholder="Enter First Name" name="firstName" required value="<%=(typeof userData!='undefined')? userData.firstName:''%>" >
           <label>Last Name</label>
           <input type="text" placeholder="Enter Last Address" name="lastName" required value="<%=(typeof userData!='undefined')? userData.lastName:''%>">
           <label>Phone</label>
