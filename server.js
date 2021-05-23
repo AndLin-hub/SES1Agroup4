@@ -65,6 +65,3 @@ app.use('/users',AuthRoute);
 
 
 
-
-
-app.listen(80); 
